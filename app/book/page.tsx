@@ -144,13 +144,13 @@ export default function BookPage() {
 
           {date && isOff && (
             <p className="mt-4 text-red-600 font-medium">
-              Thu - Fri off, ei dine kono slot nei.
+              Thu - Fri off day.
             </p>
           )}
 
           {date && !isOff && (
             <>
-              <p className="mt-6 font-medium text-gray-900">Slot choose koro — 20 minute</p>
+              <p className="mt-6 font-medium text-gray-900">Choose yours slot — 20 minute</p>
               <div className="grid grid-cols-3 gap-2 mt-2">
                 {SLOTS.map((s) => (
                   <button
@@ -173,8 +173,8 @@ export default function BookPage() {
 
           {selected && (
             <>
-              <label className="block mt-6 font-medium text-gray-900">Patient Naam</label>
-              <input value={name} onChange={(e) => setName(e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1 text-gray-900" placeholder="Naam likho" />
+              <label className="block mt-6 font-medium text-gray-900">Patient Name</label>
+              <input value={name} onChange={(e) => setName(e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1 text-gray-900" placeholder="Enter your name" />
 
               <label className="block mt-4 font-medium text-gray-900">Age</label>
               <input value={age} onChange={(e) => setAge(e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1 text-gray-900" placeholder="Age" />
@@ -182,8 +182,8 @@ export default function BookPage() {
               <label className="block mt-4 font-medium text-gray-900">Phone</label>
               <input value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1 text-gray-900" placeholder="01XXXXXXXXX" />
 
-              <label className="block mt-4 font-medium text-gray-900">Somossa</label>
-              <input value={problem} onChange={(e) => setProblem(e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1 text-gray-900" placeholder="Ki somossa?" />
+              <label className="block mt-4 font-medium text-gray-900">What is your problem</label>
+              <input value={problem} onChange={(e) => setProblem(e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1 text-gray-900" placeholder="problems?" />
 
               <button onClick={submit} disabled={saving} className="w-full mt-6 bg-blue-600 text-white font-semibold py-3 rounded-full">
                 {saving ? "Saving..." : `Confirm Booking — Serial ${selected.serial}`}
