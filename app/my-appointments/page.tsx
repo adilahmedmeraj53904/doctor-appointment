@@ -65,10 +65,10 @@ export default function MyAppointmentPage() {
   }, [newDate]);
 
   function canChange(date: string, time: string) {
-    const apptTime = new Date(`${date}T${time}:00`).getTime();
-    const now = new Date().getTime();
-    return apptTime - now > 2 * 60 * 60 * 1000;
-  }
+  const apptTime = new Date(`${date}T${time}`).getTime();
+  const now = new Date().getTime();
+  return apptTime - now > 2 * 60 * 60 * 1000;
+}
 
   async function search() {
     if (!phone) {
