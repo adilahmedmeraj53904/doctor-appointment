@@ -39,7 +39,7 @@ export default function BookPage() {
 
   async function submit() {
     if (!date || !selected || !name || !phone) {
-      alert("Date, slot, naam ar phone — sob dite hobe");
+      alert("Date, slot, name and phone number — All is necessary");
       return;
     }
     setSaving(true);
@@ -47,7 +47,7 @@ export default function BookPage() {
     // 1. Doctor-er id nao
     const { data: doctors } = await supabase.from("doctors").select("id").limit(1);
     if (!doctors || doctors.length === 0) {
-      alert("Doctor pai nai — age doctors table-e info save koro");
+      alert("Doctor not found — Firstly setup your booking page correctly");
       setSaving(false);
       return;
     }
@@ -62,7 +62,7 @@ export default function BookPage() {
       .eq("status", "booked");
 
     if (existing && existing.length > 0) {
-      alert("Ei slot-ta already booked, onno slot nao");
+      alert(" This slot is already booked, Take another slot");
       setSaving(false);
       return;
     }
@@ -81,7 +81,7 @@ export default function BookPage() {
       .single();
 
     if (slotError || !slotData) {
-      alert("Slot save hoy nai: " + (slotError?.message || "unknown error"));
+      alert("Slot is not saved. Give data correctly: " + (slotError?.message || "unknown error"));
       setSaving(false);
       return;
     }
@@ -97,7 +97,7 @@ export default function BookPage() {
     });
 
     if (apptError) {
-      alert("Appointment save hoy nai: " + apptError.message);
+      alert("Appointment is not saved. Try again!: " + apptError.message);
       setSaving(false);
       return;
     }
@@ -131,7 +131,7 @@ export default function BookPage() {
       <div className="max-w-xl mx-auto px-4 py-10">
         <div className="bg-white rounded-2xl shadow p-8">
           <h1 className="text-2xl font-bold text-gray-900">Book Appointment</h1>
-          <p className="text-gray-600 mt-1">Dr. Adil Ahmed Meraj — 500 Tk</p>
+          <p className="text-gray-600 mt-1">Dr. Adil Ahmed Meraj . Consultation fee — 500 Tk</p>
 
           <label className="block mt-6 font-medium text-gray-900">Date</label>
           <input
