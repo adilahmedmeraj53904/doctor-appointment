@@ -118,7 +118,7 @@ export default function BookPage() {
             <p className="text-gray-900">Patient: {name}</p>
             <p className="text-gray-900">Fee: 500 Tk — Pay at chamber</p>
             <Link href="/" className="inline-block mt-6 text-blue-600 underline">
-              Home-e firo
+              Back to Home page
             </Link>
           </div>
         </div>
