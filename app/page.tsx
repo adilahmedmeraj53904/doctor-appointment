@@ -44,7 +44,7 @@ export default function Home() {
           >
             Book Appointment
           </Link>
-          <Link href="/my-appointment" className="inline-block mt-3 text-blue-600 underline">
+          <Link href="/my-appointments" className="inline-block mt-3 text-blue-600 underline">
   My Appointment — Cancel / Reschedule
 </Link>
 
