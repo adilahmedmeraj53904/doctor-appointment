@@ -71,9 +71,9 @@ export default function AdminPage() {
       <div className="max-w-2xl mx-auto px-4 py-10">
         <div className="bg-white rounded-2xl shadow p-8">
           <h1 className="text-2xl font-bold text-gray-900">Admin — Patient List</h1>
-          <p className="text-gray-600 mt-1">Dr. Adil Ahmed Meraj — sob booking</p>
+          <p className="text-gray-600 mt-1">Dr. Adil Ahmed Meraj — All booking</p>
 
-          <label className="block mt-6 font-medium text-gray-900">Date diye dekho (khali rakhle sob dekhabe)</label>
+          <label className="block mt-6 font-medium text-gray-900">Put a date (If you dont feel you will see all apointments)</label>
           <input
             type="date"
             value={filterDate}
@@ -84,7 +84,7 @@ export default function AdminPage() {
           {loading && <p className="mt-6 text-gray-600">Loading...</p>}
 
           {!loading && shown.length === 0 && (
-            <p className="mt-6 text-gray-600">Kono booking pai nai.</p>
+            <p className="mt-6 text-gray-600"> No booking was found.</p>
           )}
 
           {shown.map((b) => (
@@ -94,13 +94,13 @@ export default function AdminPage() {
               </p>
               <p className="text-gray-900">Date: {b.slotDate} — Time: {b.slotTime}</p>
               <p className="text-gray-900">Age: {b.patient_age ?? "-"} — Phone: {b.patient_phone}</p>
-              <p className="text-gray-900">Somossa: {b.problem || "-"}</p>
+              <p className="text-gray-900">Problem: {b.problem || "-"}</p>
               <p className="text-gray-900">Status: {b.status}</p>
             </div>
           ))}
 
           <Link href="/" className="inline-block mt-6 text-blue-600 underline">
-            Home-e firo
+            Back to Home page
           </Link>
         </div>
       </div>
