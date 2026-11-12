@@ -120,7 +120,7 @@ export default function MyAppointmentPage() {
 
     await supabase.from("appointments").update({ status: "cancelled" }).eq("id", a.id);
     await supabase.from("slots").update({ status: "available" }).eq("id", a.slot_id);
-    alert("Booking cancel hoye geche");
+    alert("Booking Cancel Successfully");
     search();
   }
 
@@ -176,7 +176,7 @@ export default function MyAppointmentPage() {
     await supabase.from("slots").update({ status: "available" }).eq("id", a.slot_id);
     await supabase.from("appointments").update({ slot_id: newSlotRow.id }).eq("id", a.id);
 
-    alert(`Reschedule hoye geche — Notun Serial ${newSlot.serial}, ${newDate}, ${newSlot.label}`);
+    alert(`Reschedule Successfully. Your new serial ${newSlot.serial}, ${newDate}, ${newSlot.label}`);
     setRescheduleId(null);
     setNewDate("");
     setNewSlot(null);
