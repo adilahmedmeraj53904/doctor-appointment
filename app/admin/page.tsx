@@ -22,16 +22,12 @@ export default function AdminPage() {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [filterDate, setFilterDate] = useState("");
   const [loading, setLoading] = useState(true);
-const [bookings, setBookings] = useState<Booking[]>([]);
-const [filterDate, setFilterDate] = useState("");
-const [loading, setLoading] = useState(true);
-const [unlocked, setUnlocked] = useState(false);
-const [password, setPassword] = useState('');
-const [error, setError] = useState('');
 
 const [unlocked, setUnlocked] = useState(false);
 const [password, setPassword] = useState('');
 const [error, setError] = useState('');
+
+
 
 async function login() {
   const res = await fetch('/api/admin-login', {
