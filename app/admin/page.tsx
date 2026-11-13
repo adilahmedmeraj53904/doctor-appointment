@@ -29,6 +29,10 @@ const [unlocked, setUnlocked] = useState(false);
 const [password, setPassword] = useState('');
 const [error, setError] = useState('');
 
+const [unlocked, setUnlocked] = useState(false);
+const [password, setPassword] = useState('');
+const [error, setError] = useState('');
+
 async function login() {
   const res = await fetch('/api/admin-login', {
     method: 'POST',
