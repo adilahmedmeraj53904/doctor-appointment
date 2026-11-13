@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+
 import Link from "next/link";
 import { supabase } from "../../lib/supabase";
 
@@ -21,6 +22,26 @@ export default function AdminPage() {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [filterDate, setFilterDate] = useState("");
   const [loading, setLoading] = useState(true);
+const [bookings, setBookings] = useState<Booking[]>([]);
+const [filterDate, setFilterDate] = useState("");
+const [loading, setLoading] = useState(true);
+const [unlocked, setUnlocked] = useState(false);
+const [password, setPassword] = useState('');
+const [error, setError] = useState('');
+
+async function login() {
+  const res = await fetch('/api/admin-login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password }),
+  });
+  if (res.ok) {
+    sessionStorage.setItem('admin', '1');
+    setUnlocked(true);
+  } else {
+    setError('Wrong password');
+  }
+}
 
   useEffect(() => {
     async function load() {
@@ -65,6 +86,21 @@ export default function AdminPage() {
   const shown = filterDate
     ? bookings.filter((b) => b.slotDate === filterDate)
     : bookings;
+if (!unlocked) {
+  return (
+    <div style={{ maxWidth: 400, margin: '80px auto', padding: 20 }}>
+      <h1>Admin Login</h1>
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Enter admin password"
+      />
+      <button onClick={login}>Login</button>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+    </div>
+  );
+}
 
   return (
     <main className="min-h-screen bg-gray-50 text-gray-900">
