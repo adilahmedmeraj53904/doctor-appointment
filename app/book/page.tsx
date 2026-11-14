@@ -105,6 +105,19 @@ export default function BookPage() {
     setSaving(false);
     setDone(true);
   }
+async function payNow() {
+  const res = await fetch('/api/checkout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ appointmentId: '' }),
+  });
+  const data = await res.json();
+  if (data.url) {
+    window.location.href = data.url;
+  } else {
+    alert('Payment failed to start. Please try again.');
+  }
+}
 
   if (done && selected) {
     return (
@@ -117,6 +130,14 @@ export default function BookPage() {
             <p className="text-gray-900">Time: {selected.label}</p>
             <p className="text-gray-900">Patient: {name}</p>
             <p className="text-gray-900">Fee: 500 Tk — Pay at chamber</p>
+            <button
+  onClick={payNow}
+  className="w-full mt-4 bg-green-600 text-white py-3 rounded-lg font-semibold cursor-pointer"
+>
+  Pay Now - $5.00
+</button>
+
+
             <Link href="/" className="inline-block mt-6 text-blue-600 underline">
               Back to Home page
             </Link>
