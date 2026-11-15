@@ -216,6 +216,10 @@ async function payNow() {
               <button onClick={submit} disabled={saving} className="w-full mt-6 bg-blue-600 text-white font-semibold py-3 rounded-full">
                 {saving ? "Saving..." : `Confirm Booking — Serial ${selected.serial}`}
               </button>
+              <Link href="/" className="inline-block mt-6 text-blue-600 underline">
+  Back to Homepage
+</Link>
+
             </>
           )}
         </div>
