@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+
 import Link from "next/link";
 import { supabase } from "../../lib/supabase";
 
@@ -29,6 +30,8 @@ export default function BookPage() {
   const [problem, setProblem] = useState("");
   const [done, setDone] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [appointmentId, setAppointmentId] = useState('');
+
 
   useEffect(() => {
     setToday(new Date().toISOString().split("T")[0]);
@@ -87,20 +90,22 @@ export default function BookPage() {
     }
 
     // 4. Appointment save koro
-    const { error: apptError } = await supabase.from("appointments").insert({
+   const { error: apptError } = await supabase.from("appointments").insert({
+
       slot_id: slotData.id,
       patient_name: name,
       patient_age: age ? parseInt(age) : null,
       patient_phone: phone,
       problem: problem,
       status: "booked",
-    });
+    }).select().single();
 
     if (apptError) {
       alert("Appointment is not saved. Try again!: " + apptError.message);
       setSaving(false);
       return;
     }
+setAppointmentId(newAppt.id);
 
     setSaving(false);
     setDone(true);
@@ -109,7 +114,7 @@ async function payNow() {
   const res = await fetch('/api/checkout', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ appointmentId: '' }),
+    body: JSON.stringify({ appointmentId }),
   });
   const data = await res.json();
   if (data.url) {

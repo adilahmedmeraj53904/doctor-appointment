@@ -25,7 +25,7 @@ type Appt = {
   patient_name: string;
   patient_phone: string;
   problem: string;
-  status: string;
+  payment_status: string;
   date: string;
   time: string;
   serial_no: number;
@@ -211,6 +211,7 @@ export default function MyAppointmentPage() {
               <p className="text-gray-900">Date: {a.date}</p>
               <p className="text-gray-900">Time: {a.time}</p>
               <p className="text-gray-900">Problem: {a.problem || "-"}</p>
+<p className="text-gray-900">Payment: {a.payment_status === 'paid' ? 'Paid' : 'Pending'}</p>
 
               {rescheduleId === a.id ? (
                 <>
