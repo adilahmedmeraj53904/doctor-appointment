@@ -123,6 +123,19 @@ export default function MyAppointmentPage() {
     alert("Booking Cancel Successfully");
     search();
   }
+async function payNow(appointmentId: string) {
+  const res = await fetch('/api/checkout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ appointmentId }),
+  });
+  const data = await res.json();
+  if (data.url) {
+    window.location.href = data.url;
+  } else {
+    alert('Payment failed to start. Please try again.');
+  }
+}
 
   async function confirmReschedule(a: Appt) {
     if (!newDate || !newSlot) {
@@ -257,6 +270,12 @@ export default function MyAppointmentPage() {
                   <button onClick={() => cancelAppt(a)} className="flex-1 bg-red-600 text-white py-2 rounded-full">
                     Cancel
                   </button>
+                  {a.payment_status !== 'paid' && (
+  <button onClick={() => payNow(a.id)} className="flex-1 bg-green-600 text-white py-2 rounded-full cursor-pointer">
+    Pay Now
+  </button>
+)}
+
                 </div>
               )}
             </div>
