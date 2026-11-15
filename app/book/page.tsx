@@ -90,7 +90,8 @@ export default function BookPage() {
     }
 
     // 4. Appointment save koro
-   const { error: apptError } = await supabase.from("appointments").insert({
+   const { data: newAppt, error: apptError } = await supabase.from("appointments").insert({
+
 
       slot_id: slotData.id,
       patient_name: name,
@@ -105,7 +106,8 @@ export default function BookPage() {
       setSaving(false);
       return;
     }
-setAppointmentId(newAppt.id);
+setAppointmentId(newAppt?.id || '');
+
 
     setSaving(false);
     setDone(true);
